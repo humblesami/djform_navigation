@@ -114,7 +114,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
 
-my_apps = ['admin_image_preview', 'initsql']
+my_apps = ['form_navigation', 'initsql', 'sample_app']
 INSTALLED_APPS = my_apps + INSTALLED_APPS
 # INSTALLED_APPS = INSTALLED_APPS + my_apps
 ALLOW_UNICODE_SLUGS = True

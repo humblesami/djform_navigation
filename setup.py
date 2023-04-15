@@ -27,9 +27,9 @@ def main(vv):
 
 
     setup(
-        name='admin-form-image-preivew',
+        name='djform_navigation',
         version=str(vv),
-        description='Test package.',
+        description='Primary key based form navigation to explore next/prev records.',
         classifiers=[
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",
@@ -39,21 +39,19 @@ def main(vv):
         long_description_content_type="text/markdown",
         author="Sami Akram",
         author_email="samiakram@live.com",
-        url="https://github.com/humblesami/admin_form_image_preivew.git",
+        url="https://github.com/humblesami/djform_navigation.git",
 
         python_requires=">=3.6",
         install_requires=install_requires,
         tests_require=["coverage"],
         extras_require=extras_require,
-
         include_package_data=True,
         setup_requires=['setuptools_scm'],
-        packages=find_namespace_packages(
-            include=[
-                "admin_image_preview.templates.admin",
-                "admin_image_preview"
-            ],
-        ),
+        data_files=[
+            ('1', ['form_navigation/templates/admin/change_form.html', 'form_navigation/templates/admin/original.html']),
+            ('2', ['form_navigation/static/form_navigation/module.js'])
+        ],
+        packages=find_namespace_packages(include=["form_navigation"],),
     )
 
 if __name__ == '__main__':

@@ -1,34 +1,48 @@
 **Make PIP your self**
 
-1. `git clone https://github.com/humblesami/admin_form_image_preivew.git`
-2. `cd admin_form_image_preivew`
+1. `git clone https://github.com/humblesami/djform_navigation.git`
+2. `cd djform_navigation`
 
-3. Find and replace `admin_form_image_preivew` with your own `your_module_name`
-4. Find and replace `admin-form-image-preivew` with your own `your-module-name`
-5. Install twine
-`sudo apt-get update`
-`sudo apt-get install twine`
+3. Find and replace `djform_navigation` with your own `your_module_name`
 
-6. Make your build
+**Build and test using sample_usage locally**
 
-    `rm -r dist/*`
-    `rm -r build/*`
-    `python setup.py clean --all`
-    `python setup.py sdist bdist_wheel -v=1.5`
+rm -r dist/*
 
-**Install and test locally**
-`pip uninstall admin-form-image-preivew`
-`pip install dist/your_module_name-1.5-py3-none-any.whl`
+rm -r build/*
 
+python setup.py sdist bdist_wheel -v=1.0
+
+pip uninstall -y djform_navigation
+
+pip install dist/djform_navigation-1.0-py3-none-any.whl
+
+cd sample_usage
+
+pip install -r requirements.txt
+
+#python manage.py initsql
+
+cd ..
+
+echo "done"
+
+#you can uncomment `python manage.py initsql` if you want to reset database
 
 **Upload your pip**
+
+Install twine
+
+`sudo apt-get update`
+
+`sudo apt-get install twine`
 
 https://twine.readthedocs.io/en/stable/
 
 `pip install twine`
 
 `twine upload dist/* --config-file ~/.pypirc_test`
-or
+
 `twine upload dist/* --config-file ~/.pypirc_prod`
 
 
@@ -46,7 +60,7 @@ or
 
 
 *Install the uploaded package*
-pip install -i https://test.pypi.org/simple/ admin-form-image-preivew
+pip install -i https://test.pypi.org/simple/ djform_navigation
 
 
     .pypirc_prod
@@ -60,4 +74,4 @@ pip install -i https://test.pypi.org/simple/ admin-form-image-preivew
     password: token2
 
 *Install the uploaded package*
-pip install admin-form-image-preivew
+pip install djform_navigation

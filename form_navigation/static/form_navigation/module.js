@@ -83,5 +83,6 @@
             }, true);
         }
     }
+    console.log('Started preview');
     set_previews();
 })();

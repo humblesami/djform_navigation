@@ -5,7 +5,7 @@ requires = ["hatchling>=1.6.0,<2", "Django==4.1.7"]
 build-backend = "hatchling.build"
 
 [project]
-name = "admin-form-image-preivew"
+name = "djform_navigation"
 description = "Sami Test Pip"
 readme = "README.md"
 keywords = ["urllib", "httplib", "http"]
@@ -16,9 +16,9 @@ requires-python = ">=3.5"
 dynamic = ["version"]
 
 [project.urls]
-"Changelog" = "https://github.com/humblesami/admin_form_image_preivew/CHANGES.rst"
-"Code" = "https://github.com/humblesami/admin_form_image_preivew"
-"Issue tracker" = "https://github.com/humblesami/admin_form_image_preivew/issues"
+"Changelog" = "https://github.com/humblesami/djform_navigation/CHANGES.rst"
+"Code" = "https://github.com/humblesami/djform_navigation"
+"Issue tracker" = "https://github.com/humblesami/djform_navigation/issues"
 
 [tool.hatch.build.targets.sdist]
 include = [ "/docs",  "/src",  "/test",  "/requirements.txt",  "/CHANGES.rst",  "/README.md",  "/LICENSE.txt"]
