@@ -45,14 +45,9 @@ https://twine.readthedocs.io/en/stable/
 
 `pip install twine`
 
-`twine upload dist/* --config-file ~/.pypirc_test`
-
-`twine upload dist/* --config-file ~/.pypirc_prod`
-
-
 **Sample config files for twine**
 
-    .pypirc_test
+1. .pypirc_test (add this to root directory where setup.py exists)
 
     [distutils]
     index-servers = pypi
@@ -63,11 +58,7 @@ https://twine.readthedocs.io/en/stable/
     password: token1
 
 
-*Install the uploaded package*
-pip install -i https://test.pypi.org/simple/ djform_navigation
-
-
-    .pypirc_prod
+2.    .pypirc_prod (add this to root directory where setup.py exists)
 
     [distutils]
     index-servers = pypi
@@ -77,5 +68,17 @@ pip install -i https://test.pypi.org/simple/ djform_navigation
     username: __token__
     password: token2
 
-*Install the uploaded package*
+**Final Step**
+
+`twine upload dist/* --config-file .pypirc_test`
+
+*After upload Install the uploaded package*
+
+pip install -i https://test.pypi.org/simple/ djform_navigation
+
+
+`twine upload dist/* --config-file .pypirc_prod`
+
+*After upload Install the uploaded package*
+
 pip install djform_navigation
