@@ -1,88 +1,29 @@
 (function(){
-    function set_previews() {
-        let image_fields = document.querySelectorAll('form .form-row input[accept="image/*"]');
-        if(!image_fields.length) {
-            console.log('No image fields found in form => form .form-row input[accept="image/*"]');
-            return;
-        }
-        //localStorage.setItem('test_image_preivew', 1);
-        if(localStorage.getItem('test_image_preivew')){
-            test_usability();
-        }
-        //localStorage.removeItem('test_image_preivew');
-
-        function test_usability(){
-            let cnt = image_fields.length;
-            if(!cnt){
-                console.log('No file inputs with accept="image/*" were found in form.');
-                return;
-            }
-
-            let subject = ' Image Preview => ';
-            let message = 'You should see an image preview after changing any of '+cnt+' file input having accept="image/*"';
-            let image_links = document.querySelector('a.deletelink');
-            if(image_links){
-                let upload_field_conrtainers = document.querySelector('p.file-upload');
-                let cnt1 = upload_field_conrtainers.length;
-                let cnt2 = upload_field_conrtainers.querySelector('a').length;
-                if(cnt2 == cnt){
-                    console.log('Success:' + subject, 'edit mode');
-                }
-                else{
-                    let message1 = 'Preview only available for ';
-                    let message2 = '  file inputs having accept="image/*" enclosed by <p class="file-upload"> ';
-                    if(cnt1 == cnt){
-                        message2 += ' and containing link (a) to image';
-                        message = message1 + cnt2 + message;
-                    }
-                    else{
-                        message = message1 + cnt1 + message;
-                    }
-                    console.log('Failure:' + subject, 'edit mode');
-                }
-            }
-            else{
-                console.log('Success:' + subject, 'create mode');
-            }
-            console.log(message);
-        }
-
-        function readFileShowImage(preview_container, input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (ev1) {
-                    let image_url = ev1.target.result;
-                    preview_container.innerHTML = (`<img src="${image_url}" style="max-height:20vh;" />`);
-                };
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                preview_container.innerHTML = ('');
-            }
-        }
-        for (let file_el of image_fields) {
-            if (file_el.name.indexOf('__prefix__') > -1) { return; }
-            let parent_obj = file_el.parentNode;
-            let preview_container = parent_obj.querySelector('.image-preview');
-            if(!preview_container){
-                preview_container = document.createElement('div');
-                preview_container.setAttribute('class', 'image-preview');
-                preview_container.setAttribute('style', 'padding-top:10px');
-                parent_obj.appendChild(preview_container);
-                preview_container = parent_obj.querySelector('.image-preview');
-            }
-            let link_el = parent_obj.querySelector('a');
-            if(link_el){
-                let link_href = link_el.getAttribute('href');
-                preview_container.innerHTML = (`<a href="${link_href}" target="_blank"><img src="${link_href}" style="max-height:20vh;" /></a>`);
-            }
-            else{
-                preview_container.innerHTML = ('');
-            }
-            file_el.addEventListener("change", function(ev){
-                readFileShowImage(preview_container, file_el);
-            }, true);
-        }
+    let loc = window.location.pathname; // ===> /admin/elections/party/7/change/
+    let arr = loc.split('/');
+    let change_chunk_index = arr.indexOf('change');
+    //console.log(arr, change_chunk_index);
+    if(change_chunk_index == -1){
+        return;
     }
-    console.log('Started preview');
-    set_previews();
+    if(!(/\d+/.test(arr[change_chunk_index-1]))){
+        return;
+    }
+    let prev_record_id = document.getElementById('prev_record_id').value || '';
+    let next_record_id = document.getElementById('next_record_id').value || '';
+    let data = {prev: prev_record_id, next: next_record_id};
+
+    function add_np_link(npa_text, np_id){
+        let record_path = loc.replace('/'+arr[change_chunk_index-1]+'/', '/'+np_id+'/')
+        let npa = document.createElement('a');
+        npa.setAttribute('href', record_path);
+        npa.innerHTML = npa_text;
+        document.querySelector('.prev_next').appendChild(npa);
+    }
+    if(data.prev){
+        add_np_link('Previous', data.prev);
+    }
+    if(data.next){
+        add_np_link('Next', data.next);
+    }
 })();

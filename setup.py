@@ -48,11 +48,12 @@ def main(vv):
         include_package_data=True,
         setup_requires=['setuptools_scm'],
         data_files=[
-            ('1', ['form_navigation/templates/admin/change_form.html', 'form_navigation/templates/admin/original.html']),
+            ('1', ['form_navigation/templates/admin/change_form.html']),
             ('2', ['form_navigation/static/form_navigation/module.js'])
         ],
         packages=find_namespace_packages(include=["form_navigation"],),
     )
+
 
 if __name__ == '__main__':
     version = ''
