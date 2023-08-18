@@ -17,11 +17,11 @@
             }
         </style>
         <input type="hidden" id="prev_record_id" value="{{npc_ids.prev}}"/>
-        <input type="hidden" id="cur_record_id" value="{{npc_ids.current}}"/>
+        <input type="hidden" id="current_record_id" value="{{npc_ids.current}}"/>
         <input type="hidden" id="next_record_id" value="{{npc_ids.next}}"/>
         <div class="prev_next" style="text-align:right">
         </div>
-        <script defer="defer" src="{% static 'form_navigation/module.js' %}"></script>
+        <script defer="defer" src="{% static 'form_navigation/change_form_prev_next.js' %}"></script>
     </div>
     {% endif %}
 

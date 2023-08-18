@@ -39,13 +39,11 @@ def next_prev_id(model, row_id):
 
 
 class NavigateFormAdmin(admin.ModelAdmin):
+    save_on_top = True
+
     def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
-        if not obj:
-            obj = context.get('original')
         if obj and obj.pk:
-            ob_id = obj.pk
-            model_class = obj._meta.model
-            ids = next_prev_id(model_class, ob_id)
+            ids = next_prev_id(obj._meta.model, obj.pk)
             context['npc_ids'] = ids
         res = super().render_change_form(request, context, add, change, form_url)
         return res
