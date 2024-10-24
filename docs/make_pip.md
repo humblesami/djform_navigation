@@ -58,7 +58,10 @@ https://twine.readthedocs.io/en/stable/
 
 **Final Step**
 
+`twine upload --repository testpypi dist/*`
+
 `twine upload dist/* --config-file .pypirc_test`
+
 
 *After upload Install the uploaded package*
 
