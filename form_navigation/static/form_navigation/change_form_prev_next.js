@@ -14,10 +14,10 @@
     let data = {prev: prev_record_id, next: next_record_id};
     if(data.prev){
         let record_path = loc.replace('/'+arr[change_chunk_index-1]+'/', '/'+data.prev+'/')
-        $('.prev_next').append('<a href="'+record_path+'">Prev</a>');
+        document.querySelector('.prev_next a.prev').setAttribute('href', record_path);
     }
     if(data.next){
         let record_path = loc.replace('/'+arr[change_chunk_index-1]+'/', '/'+data.next+'/')
-        $('.prev_next').append('<a href="'+record_path+'">Next</a>');
+        document.querySelector('.prev_next a.next').setAttribute('href', record_path);
     }
 })();

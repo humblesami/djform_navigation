@@ -11,27 +11,15 @@ rm -r dist/*
 
 rm -r build/*
 
-python setup.py sdist bdist_wheel -v=1.0
-
-pip uninstall -y djform_navigation
-
-pip install dist/djform_navigation-1.0-py3-none-any.whl
-
-cd sample_usage
-
 pip install -r requirements.txt
 
-python manage.py makemigrations
+python setup.py sdist bdist_wheel -v=1.1
 
-python manage.py migrate
+**Test the built package**
 
-#python manage.py initsql
+`pip uninstall -y your_module_name`
 
-cd ..
-
-echo "done"
-
-#you can uncomment `python manage.py initsql` if you want to reset database
+`pip install dist/your_module_name-1.1-py3-none-any.whl`
 
 **Upload your pip**
 
@@ -58,7 +46,7 @@ https://twine.readthedocs.io/en/stable/
     password: token1
 
 
-2.    .pypirc_prod (add this to root directory where setup.py exists)
+2. .pypirc_prod (add this to root directory where setup.py exists)
 
     [distutils]
     index-servers = pypi
@@ -74,11 +62,11 @@ https://twine.readthedocs.io/en/stable/
 
 *After upload Install the uploaded package*
 
-pip install -i https://test.pypi.org/simple/ djform_navigation
+pip install -i https://test.pypi.org/simple/ your_module_name
 
 
 `twine upload dist/* --config-file .pypirc_prod`
 
 *After upload Install the uploaded package*
 
-pip install djform_navigation
+pip install your_module_name

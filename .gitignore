@@ -3,11 +3,11 @@
 *.egg
 *.egg-info
 *.log
-/dist
-/build
+dist
+build
+
 /docs/_build
 coverage.xml
-
 .idea
 .vscode
 *.pyc

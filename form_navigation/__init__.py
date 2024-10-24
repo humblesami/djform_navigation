@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import transaction, router
 from django.contrib import admin, messages
 from django.http import HttpResponseRedirect
@@ -39,7 +40,7 @@ def next_prev_id(model, row_id):
 
 
 class NavigateFormAdmin(admin.ModelAdmin):
-    save_on_top = True
+    save_on_top = settings.SAVE_ON_TOP if hasattr(settings, 'SAVE_ON_TOP') else False
 
     def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
         if obj and obj.pk:
